@@ -23,11 +23,21 @@ import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
 class DefaultLayout extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+
+    }
+  }
+
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
-          <DefaultHeader />
+          <DefaultHeader {...this.props} />
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
@@ -38,15 +48,15 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <AppBreadcrumb appRoutes={routes}/>
+            <AppBreadcrumb appRoutes={routes} />
             <Container fluid>
               <Switch>
                 {routes.map((route, idx) => {
-                    return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
-                        <route.component {...props} />
-                      )} />)
-                      : (null);
-                  },
+                  return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                    <route.component {...props} />
+                  )} />)
+                    : (null);
+                },
                 )}
                 <Redirect from="/" to="/dashboard" />
               </Switch>

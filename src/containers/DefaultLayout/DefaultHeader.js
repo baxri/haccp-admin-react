@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
+import { ToastContainer, toast } from 'react-toastify';
+import Mmc from '../../gateway/Mmc';
+
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,17 +17,39 @@ const propTypes = {
 const defaultProps = {};
 
 class DefaultHeader extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      redirectLogout: false,
+    }
+  }
+
+  logout = async (event) => {
+
+    event.preventDefault();
+
+    try {
+      await Mmc.logOut();
+      this.props.history.push('/login');
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
   render() {
 
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
 
     return (
+
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         <AppNavbarBrand
-          full={{ src: logo, width: 89, height: 25, alt: 'CoreUI Logo' }}
-          minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
+          full={{ src: logo, width: 89, height: 25, alt: 'HACCP' }}
+          minimized={{ src: sygnet, width: 30, height: 30, alt: 'HACCP' }}
         />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
@@ -31,24 +57,24 @@ class DefaultHeader extends Component {
           <NavItem className="px-3">
             <NavLink href="/">Dashboard</NavLink>
           </NavItem>
-          <NavItem className="px-3">
+          {/* <NavItem className="px-3">
             <NavLink href="#/users">Users</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <NavLink href="#">Settings</NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
             <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
           </NavItem>
           <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-list"></i></NavLink>
+            <NavLink href="#" onClick={this.logout}><i className="icon-logout"></i></NavLink>
           </NavItem>
-          <NavItem className="d-md-down-none">
+          {/* <NavItem className="d-md-down-none">
             <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
-          </NavItem>
-          <AppHeaderDropdown direction="down">
+          </NavItem> */}
+          {/* <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
               <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
             </DropdownToggle>
@@ -67,10 +93,11 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
               <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
-          </AppHeaderDropdown>
+          </AppHeaderDropdown> */}
         </Nav>
-        <AppAsideToggler className="d-md-down-none" />
+        {/* <AppAsideToggler className="d-md-down-none" /> */}
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
+        <ToastContainer />
       </React.Fragment>
     );
   }

@@ -1,7 +1,43 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import Mmc from '../../../gateway/Mmc';
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      grantType: 'password',
+      username: 'admin@haccp.com',
+      password: 'xCM9kj2xNtx4)Kr4',
+      clientId: 2,
+      clientSecret: 'N8y1JBLpijxodiNe8JjuqBGqO9XWEeIbuLEJG3md',
+    }
+  }
+
+  login = async (event) => {
+
+    event.preventDefault();
+
+    try {
+
+      await Mmc.login(
+        this.state.grantType,
+        this.state.username,
+        this.state.password,
+        this.state.clientId,
+        this.state.clientSecret
+      );
+
+      this.props.history.push('/');
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -32,7 +68,7 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
+                          <Button color="primary" className="px-4" onClick={this.login}>Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -55,6 +91,8 @@ class Login extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
+
       </div>
     );
   }
