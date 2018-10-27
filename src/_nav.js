@@ -4,6 +4,11 @@ export default {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
+    },
+    {
+      name: 'Backups',
+      url: '/backups',
+      icon: 'icon-settings',
       badge: {
         variant: 'info',
         text: 'NEW',
