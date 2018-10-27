@@ -20,12 +20,14 @@ export default class PrivateRoute extends Component {
 
         try {
 
-            let auth = await Mmc.checkAuth();
+            setTimeout(async () => {
+                let auth = await Mmc.checkAuth();
 
-            this.setState({
-                loading: false,
-                auth: auth
-            });
+                this.setState({
+                    loading: false,
+                    auth: auth
+                });
+            }, 1000);
 
         } catch (error) {
 

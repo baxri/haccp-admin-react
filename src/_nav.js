@@ -8,7 +8,7 @@ export default {
     {
       name: 'Backups',
       url: '/backups',
-      icon: 'icon-settings',
+      icon: 'icon-layers',
       badge: {
         variant: 'info',
         text: 'NEW',
