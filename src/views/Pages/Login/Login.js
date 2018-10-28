@@ -21,6 +21,14 @@ class Login extends Component {
     }
   }
 
+  handleChange = (event) => {
+
+    this.setState({
+      [event.target.autocomplete]: event.target.value
+    });
+
+  }
+
   login = async (event) => {
 
     event.preventDefault();
@@ -40,6 +48,8 @@ class Login extends Component {
       this.props.history.push('/');
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      this.setState({ loginButtonLoader: false });
     }
   }
 
@@ -52,7 +62,7 @@ class Login extends Component {
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
-                    <Form>
+                    <Form onSubmit={this.login}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">
@@ -61,7 +71,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
+                        <Input type="text" placeholder="Username" autoComplete="username" name="username" value={this.state.username} onChange={this.handleChange} />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -69,13 +79,13 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" />
+                        <Input type="password" placeholder="Password" autoComplete="current-password" name="password" value={this.state.password} onChange={this.handleChange} />
                       </InputGroup>
                       <Row>
                         <Col xs="6">
                           <LoadingButton
-                            loading={this.state.loginButtonLoader}
-                            color="danger" className="px-4" onClick={this.login} value="LOGIN" />
+                            loader={this.state.loginButtonLoader}
+                            color="danger" className="px-4"  value="LOGIN" />
                         </Col>
                         {/* <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -90,7 +100,7 @@ class Login extends Component {
                       <h2>HACCP</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                      <a color="danger" className="btn btn-danger mt-3" active href="http://haccp.milady.io/app-center/app-release.apk" >DOWNLOAD APK</a>
+                      <a color="danger" className="btn btn-danger mt-3" href="http://haccp.milady.io/app-center/app-release.apk" >DOWNLOAD APK</a>
                       {/* <Button color="danger" className="mt-3" active>DOWNLOAD APK</Button> */}
                     </div>
                   </CardBody>

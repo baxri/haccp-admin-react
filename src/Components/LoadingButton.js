@@ -6,18 +6,25 @@ export default class LoadingButton extends Component {
 
     constructor(props) {
         super(props)
-
-        this.state = {
-
-        }
     }
 
     render() {
         return (
             <div>
-                {this.props.loading == false && <Button {...this.props}>{this.props.value}</Button>}
-                {this.props.loading == true && <Button {...this.props} disabled={true}>
-                    <span class="fa fa-circle-o-notch fa-spin"></span>
+                {!this.props.loader && <Button
+                    className={this.props.className}
+                    color={this.props.color}
+                    onClick={this.props.onClick}
+
+                >{this.props.value}</Button>}
+
+                {this.props.loader && <Button
+                    className={this.props.className}
+                    color={this.props.color}
+                    onClick={this.props.onClick}
+                    disabled={true}>
+
+                    <span className="fa fa-circle-o-notch fa-spin"></span>
                     <TextWithSpinner>{this.props.value}</TextWithSpinner>
                 </Button>}
             </div>
