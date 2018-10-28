@@ -55,7 +55,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="app flex-row align-items-center">
+      <div className="app flex-row align-items-center animated fadeIn">
         <Container>
           <Row className="justify-content-center">
             <Col md="8">

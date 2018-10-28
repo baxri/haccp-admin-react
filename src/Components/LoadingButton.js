@@ -25,7 +25,7 @@ export default class LoadingButton extends Component {
                     disabled={true}>
 
                     <span className="fa fa-circle-o-notch fa-spin"></span>
-                    <TextWithSpinner>{this.props.value}</TextWithSpinner>
+                    {this.props.value && <TextWithSpinner>{this.props.value}</TextWithSpinner>}
                 </Button>}
             </div>
         )

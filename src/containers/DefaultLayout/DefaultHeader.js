@@ -8,7 +8,7 @@ import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import { ToastContainer, toast } from 'react-toastify';
 import Mmc from '../../gateway/Mmc';
-
+import LoadingLogoutButton from '../../Components/LoadingLogoutButton'
 
 const propTypes = {
   children: PropTypes.node,
@@ -23,6 +23,7 @@ class DefaultHeader extends Component {
 
     this.state = {
       redirectLogout: false,
+      logoutButtonLoader: false,
     }
   }
 
@@ -31,8 +32,14 @@ class DefaultHeader extends Component {
     event.preventDefault();
 
     try {
-      await Mmc.logOut();
-      this.props.history.push('/login');
+
+      this.setState({ logoutButtonLoader: true });
+
+      setTimeout(async () => {
+        await Mmc.logOut();
+        this.props.history.push('/login');
+      }, 1000);
+
     } catch (error) {
       toast.error(error.message);
     }
@@ -69,7 +76,7 @@ class DefaultHeader extends Component {
             <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
           </NavItem>
           <NavItem className="d-md-down-none">
-            <NavLink href="#" onClick={this.logout}><i className="icon-logout"></i></NavLink>
+            <LoadingLogoutButton loader={this.state.logoutButtonLoader} onClick={this.logout} />
           </NavItem>
           {/* <NavItem className="d-md-down-none">
             <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
