@@ -3,6 +3,8 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGr
 import { ToastContainer, toast } from 'react-toastify';
 import Mmc from '../../../gateway/Mmc';
 
+import LoadingButton from '../../../Components/LoadingButton'
+
 class Login extends Component {
 
   constructor(props) {
@@ -14,6 +16,8 @@ class Login extends Component {
       password: 'xCM9kj2xNtx4)Kr4',
       clientId: 2,
       clientSecret: 'N8y1JBLpijxodiNe8JjuqBGqO9XWEeIbuLEJG3md',
+
+      loginButtonLoader: false,
     }
   }
 
@@ -22,6 +26,8 @@ class Login extends Component {
     event.preventDefault();
 
     try {
+
+      this.setState({ loginButtonLoader: true });
 
       await Mmc.login(
         this.state.grantType,
@@ -36,7 +42,6 @@ class Login extends Component {
       toast.error(error.message);
     }
   }
-
 
   render() {
     return (
@@ -68,7 +73,9 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="danger" className="px-4" onClick={this.login}>Login</Button>
+                          <LoadingButton
+                            loading={this.state.loginButtonLoader}
+                            color="danger" className="px-4" onClick={this.login} value="LOGIN" />
                         </Col>
                         {/* <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -83,7 +90,7 @@ class Login extends Component {
                       <h2>HACCP</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                        <a  color="danger" className="btn btn-danger mt-3" active href="http://haccp.milady.io/app-center/app-release.apk" >DOWNLOAD APK</a>
+                      <a color="danger" className="btn btn-danger mt-3" active href="http://haccp.milady.io/app-center/app-release.apk" >DOWNLOAD APK</a>
                       {/* <Button color="danger" className="mt-3" active>DOWNLOAD APK</Button> */}
                     </div>
                   </CardBody>
