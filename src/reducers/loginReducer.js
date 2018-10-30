@@ -4,7 +4,12 @@ const initialState = {
 
 }
 
-
 export default function (state = initialState, action) {
-    return state;
+    switch (action.type) {
+        case 'MAKE_LOGIN':
+            return { ...state, ...{ login: true } };
+            break;
+        default:
+            return state;
+    }
 }
