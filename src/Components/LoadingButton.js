@@ -8,6 +8,8 @@ export default class LoadingButton extends Component {
         super(props)
     }
 
+    // login
+
     render() {
         return (
             <div>
