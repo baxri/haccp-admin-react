@@ -1,6 +1,5 @@
 import axios from 'axios';
-import config from "../config/index";
-
+import { gateway } from "../config/index";
 
 export function initLogin() {
     return async function (dispatch) {
@@ -24,7 +23,7 @@ export function initLogin() {
 export function makeLogin(grantType, username, password, clientId, clientSecret) {
     return async function (dispatch) {
 
-        let response = await axios.post(config.gateway, {
+        let response = await axios.post(gateway, {
             username,
             password,
             grant_type: grantType,
@@ -46,7 +45,7 @@ export function makeLogin(grantType, username, password, clientId, clientSecret)
 export function logOut() {
     return async function (dispatch) {
 
-        await localStorage.removeItem('access_token');
+        localStorage.removeItem('access_token');
 
         dispatch({
             type: 'LOGOUT',
