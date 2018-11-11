@@ -2,13 +2,19 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 // import logo from './logo.svg';
 import LoadingScreen from 'react-loading-screen';
-import Mmc from '../gateway/Mmc';
 import { connect } from "react-redux";
+import { initLogin } from "../actions/loginActions";
 
 class PrivateRoute extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount = () => {
+        setTimeout(() => {
+            this.props.initLogin();
+        }, 1000);
     }
 
     render() {
@@ -49,8 +55,8 @@ class PrivateRoute extends Component {
 function mapStateToProps(state) {
     return {
         auth: state.login.auth,
-        loading: false,
+        loading: state.login.loading,
     };
 }
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps, { initLogin })(PrivateRoute);

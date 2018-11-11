@@ -7,8 +7,9 @@ import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler }
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import { ToastContainer, toast } from 'react-toastify';
-import Mmc from '../../gateway/Mmc';
 import LoadingLogoutButton from '../../Components/LoadingLogoutButton'
+import { connect } from "react-redux";
+import { logOut } from "../../actions/loginActions";
 
 const propTypes = {
   children: PropTypes.node,
@@ -36,7 +37,7 @@ class DefaultHeader extends Component {
       this.setState({ logoutButtonLoader: true });
 
       setTimeout(async () => {
-        await Mmc.logOut();
+        await this.props.logOut();
         this.props.history.push('/login');
       }, 1000);
 
@@ -113,4 +114,4 @@ class DefaultHeader extends Component {
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
-export default DefaultHeader;
+export default connect(null, { logOut })(DefaultHeader);

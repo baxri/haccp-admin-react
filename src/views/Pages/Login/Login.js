@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import Mmc from '../../../gateway/Mmc';
 
 import LoadingButton from '../../../Components/LoadingButton'
 import { connect } from 'react-redux'
