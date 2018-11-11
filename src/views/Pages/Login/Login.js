@@ -4,6 +4,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import Mmc from '../../../gateway/Mmc';
 
 import LoadingButton from '../../../Components/LoadingButton'
+import { connect } from 'react-redux'
+import { makeLogin } from "../../../actions/loginActions";
+
 
 class Login extends Component {
 
@@ -37,7 +40,16 @@ class Login extends Component {
 
       this.setState({ loginButtonLoader: true });
 
-      await Mmc.login(
+      // await Mmc.login(
+      //   this.state.grantType,
+      //   this.state.username,
+      //   this.state.password,
+      //   this.state.clientId,
+      //   this.state.clientSecret
+      // );
+
+
+      await this.props.makeLogin(
         this.state.grantType,
         this.state.username,
         this.state.password,
@@ -54,6 +66,9 @@ class Login extends Component {
   }
 
   render() {
+
+    console.log(this.props.auth);
+
     return (
       <div className="app flex-row align-items-center animated fadeIn">
         <Container>
@@ -85,7 +100,7 @@ class Login extends Component {
                         <Col xs="6">
                           <LoadingButton
                             loader={this.state.loginButtonLoader}
-                            color="danger" className="px-4"  value="LOGIN" />
+                            color="danger" className="px-4" value="LOGIN" />
                         </Col>
                         {/* <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -116,4 +131,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {
+    auth: state.login.auth,
+  };
+}
+
+export default connect(mapStateToProps, { makeLogin })(Login);

@@ -3,40 +3,17 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 // import logo from './logo.svg';
 import LoadingScreen from 'react-loading-screen';
 import Mmc from '../gateway/Mmc';
+import { connect } from "react-redux";
 
-
-export default class PrivateRoute extends Component {
+class PrivateRoute extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            auth: false,
-            loading: true,
-        };
-    }
-
-    componentWillMount = async () => {
-
-        try {
-
-            setTimeout(async () => {
-                let auth = await Mmc.checkAuth();
-
-                this.setState({
-                    loading: false,
-                    auth: auth
-                });
-            }, 1000);
-
-        } catch (error) {
-
-        }
     }
 
     render() {
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             return (<LoadingScreen
                 loading={true}
                 bgColor='#f1f1f1'
@@ -48,9 +25,9 @@ export default class PrivateRoute extends Component {
             )
         }
 
-        if (!this.state.loading) {
+        if (!this.props.loading) {
             // Check for user autorization and redirect
-            if (this.state.auth) {
+            if (this.props.auth) {
                 return (
                     <Route {...this.props} />
                 )
@@ -67,3 +44,13 @@ export default class PrivateRoute extends Component {
         }
     }
 }
+
+
+function mapStateToProps(state) {
+    return {
+        auth: state.login.auth,
+        loading: false,
+    };
+}
+
+export default connect(mapStateToProps)(PrivateRoute);

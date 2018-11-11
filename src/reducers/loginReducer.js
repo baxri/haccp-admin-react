@@ -1,13 +1,14 @@
 
 const initialState = {
-    login: false,
-
+    auth: false,
+    token: null,
 }
+
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case 'MAKE_LOGIN':
-            return { ...state, ...{ login: true } };
+        case 'LOGIN':
+            return { ...state, auth: true, token: action.payload };
             break;
         default:
             return state;
