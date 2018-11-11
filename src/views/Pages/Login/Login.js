@@ -39,15 +39,6 @@ class Login extends Component {
 
       this.setState({ loginButtonLoader: true });
 
-      // await Mmc.login(
-      //   this.state.grantType,
-      //   this.state.username,
-      //   this.state.password,
-      //   this.state.clientId,
-      //   this.state.clientSecret
-      // );
-
-
       await this.props.makeLogin(
         this.state.grantType,
         this.state.username,
@@ -65,9 +56,6 @@ class Login extends Component {
   }
 
   render() {
-
-    console.log(this.props.auth);
-
     return (
       <div className="app flex-row align-items-center animated fadeIn">
         <Container>

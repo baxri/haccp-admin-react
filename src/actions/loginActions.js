@@ -1,4 +1,6 @@
 import axios from 'axios';
+import config from "../config/index";
+
 
 export function initLogin() {
     return async function (dispatch) {
@@ -22,7 +24,7 @@ export function initLogin() {
 export function makeLogin(grantType, username, password, clientId, clientSecret) {
     return async function (dispatch) {
 
-        let response = await axios.post('http://haccp.milady.io/oauth/token', {
+        let response = await axios.post(config.gateway, {
             username,
             password,
             grant_type: grantType,
@@ -41,7 +43,7 @@ export function makeLogin(grantType, username, password, clientId, clientSecret)
     }
 }
 
-export async function logOut() {
+export function logOut() {
     return async function (dispatch) {
 
         await localStorage.removeItem('access_token');
