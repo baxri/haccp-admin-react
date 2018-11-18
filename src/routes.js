@@ -127,8 +127,13 @@ const Backups = Loadable({
   loading: Loading,
 });
 
-const BackupsDetails = Loadable({
-  loader: () => import('./views/Backups/Details'),
+const BackupPictures = Loadable({
+  loader: () => import('./views/Backups/Pictures'),
+  loading: Loading,
+});
+
+const BackupControles = Loadable({
+  loader: () => import('./views/Backups/Controles'),
   loading: Loading,
 });
 
@@ -193,13 +198,13 @@ const User = Loadable({
 });
 
 
-
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/backups', name: 'Backups', component: Backups },
-  { path: '/backups/:id', name: 'Backups Details', component: BackupsDetails },
+  { path: '/backups/:id/pictures', exact: true, name: 'Pictures', component: BackupPictures },
+  { path: '/backups/:id/controles', exact: true, name: 'Controles', component: BackupControles },
+  { path: '/backups', exact: true, name: 'Backups', component: Backups },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
@@ -237,7 +242,7 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
+  { path: '/users', exact: true, name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];
 
