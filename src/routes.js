@@ -127,6 +127,11 @@ const Backups = Loadable({
   loading: Loading,
 });
 
+const BackupsDetails = Loadable({
+  loader: () => import('./views/Backups/Details'),
+  loading: Loading,
+});
+
 const CoreUIIcons = Loadable({
   loader: () => import('./views/Icons/CoreUIIcons'),
   loading: Loading,
@@ -194,6 +199,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/backups', name: 'Backups', component: Backups },
+  { path: '/backups/:id', name: 'Backups Details', component: BackupsDetails },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
