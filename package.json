@@ -44,7 +44,8 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "simple-line-icons": "^2.4.1",
-    "styled-components": "^4.0.2"
+    "styled-components": "^4.0.2",
+    "webpack": "^4.26.0"
   },
   "devDependencies": {
     "react-scripts": "^2.0.4"
