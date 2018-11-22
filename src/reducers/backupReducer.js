@@ -2,6 +2,8 @@
 const initialState = {
     loading: true,
     list: [],
+    controles: {},
+    pictures: {},
 }
 
 export default function (state = initialState, action) {

@@ -127,6 +127,11 @@ const Backups = Loadable({
   loading: Loading,
 });
 
+const BackupDepartmens = Loadable({
+  loader: () => import('./views/Backups/Departments'),
+  loading: Loading,
+});
+
 const BackupPictures = Loadable({
   loader: () => import('./views/Backups/Pictures'),
   loading: Loading,
@@ -202,6 +207,7 @@ const User = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/backups/:id/departments', exact: true, name: 'Departments', component: BackupDepartmens },
   { path: '/backups/:id/pictures', exact: true, name: 'Pictures', component: BackupPictures },
   { path: '/backups/:id/controles', exact: true, name: 'Controles', component: BackupControles },
   { path: '/backups', exact: true, name: 'Backups', component: Backups },
