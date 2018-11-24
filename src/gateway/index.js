@@ -10,7 +10,13 @@ export async function realm(instance, bundle) {
     let realm_path = '../haccp/public/uploads/' + bundle + '/haccp-db-8.realm';
 
     let url = realm_endpoint + '?document=' + document + '&realm_path=' + realm_path;
+
+    // base 46 encode 
+    url = btoa(url);
+
     let gateway = endpoint + '/realm?url=' + url;
+
+    console.log(gateway);
 
     let response = await axios.get(gateway,
         {

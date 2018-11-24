@@ -87,7 +87,7 @@ class Backups extends Component {
     return (
       <div className="animated fadeIn">
         {this.props.loading && <ContentLoaderTable />}
-        {!this.props.loading && <TableList headers={this.state.headers} data={this.props.backups} />}
+        {!this.props.loading && <TableList title="List of backups in HACCP system" headers={this.state.headers} data={this.props.backups} />}
       </div>
     )
   }

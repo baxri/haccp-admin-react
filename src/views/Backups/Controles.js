@@ -11,6 +11,7 @@ export default class Controles extends Component {
 
         this.state = {
             loading: true,
+            total: 0,
             controles: [],
             headers: [
                 {
@@ -54,7 +55,8 @@ export default class Controles extends Component {
         let controles = await realm('Controle', this.props.match.params.id);
 
         this.setState({
-            controles: controles,
+            total: controles.total,
+            controles: controles.list,
             loading: false,
         });
     }
@@ -63,7 +65,7 @@ export default class Controles extends Component {
         return (
             <div className="animated fadeIn">
                 {this.state.loading && <ContentLoaderTable />}
-                {!this.state.loading && <TableList headers={this.state.headers} data={this.state.controles} />}
+                {!this.state.loading && <TableList title="List of controles" total={this.state.total} headers={this.state.headers} data={this.state.controles} />}
             </div>
         )
     }

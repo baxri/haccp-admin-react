@@ -12,6 +12,7 @@ export default class Departmnets extends Component {
         this.state = {
             loading: true,
             department: [],
+            total: 0,
             headers: [
                 {
                     name: 'Department',
@@ -26,7 +27,8 @@ export default class Departmnets extends Component {
         let department = await realm('Department', this.props.match.params.id);
 
         this.setState({
-            department: department,
+            department: department.list,
+            total: department.total,
             loading: false,
         });
     }
@@ -35,7 +37,7 @@ export default class Departmnets extends Component {
         return (
             <div className="animated fadeIn">
                 {this.state.loading && <ContentLoaderTable />}
-                {!this.state.loading && <TableList headers={this.state.headers} data={this.state.department} />}
+                {!this.state.loading && <TableList title="List of departments" total={this.state.total} headers={this.state.headers} data={this.state.department} />}
             </div>
         )
     }
