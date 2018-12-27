@@ -13,11 +13,15 @@ export default class TableList extends Component {
         return (
             <div>
                 <Card>
+                    sdsddsf
                     <CardHeader><i className="fa fa-align-justify"></i>{this.props.title}</CardHeader>
                     <CardBody>
                         {this.props.total && <MyBadge className="mr-1" color="danger">Total count: {this.props.total}</MyBadge>}
 
-                        <Table responsive striped>
+                        
+                    </CardBody>
+                </Card>
+                <Table responsive striped>
                             <thead>
                                 <tr>
                                     {this.props.headers.map(header => {
@@ -40,8 +44,6 @@ export default class TableList extends Component {
                                 })}
                             </tbody>
                         </Table>
-                    </CardBody>
-                </Card>
             </div>
         )
     }

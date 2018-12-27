@@ -1,11 +1,6 @@
 export default {
   items: [
     {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-    },
-    {
       name: 'Backups',
       url: '/backups',
       icon: 'icon-layers',
@@ -14,6 +9,12 @@ export default {
         text: 'NEW',
       },
     },
+    {
+      name: 'Dashboard',
+      url: '/dashboard',
+      icon: 'icon-speedometer',
+    },
+
     // {
     //   title: true,
     //   name: 'Theme',
@@ -111,11 +112,11 @@ export default {
     //       url: '/base/switches',
     //       icon: 'icon-puzzle',
     //     },
-        // {
-        //   name: 'Tables',
-        //   url: '/base/tables',
-        //   icon: 'icon-puzzle',
-        // },
+    // {
+    //   name: 'Tables',
+    //   url: '/base/tables',
+    //   icon: 'icon-puzzle',
+    // },
     //     {
     //       name: 'Tabs',
     //       url: '/base/tabs',
