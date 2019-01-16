@@ -11,12 +11,14 @@ export async function realm(instance, bundle) {
 
     let url = realm_endpoint + '?document=' + document + '&realm_path=' + realm_path;
 
+    console.log(url);
+
     // base 46 encode 
     url = btoa(url);
 
     let gateway = endpoint + '/realm?url=' + url;
 
-    console.log(gateway);
+    
 
     let response = await axios.get(gateway,
         {

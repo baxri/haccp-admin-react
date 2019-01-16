@@ -13,12 +13,9 @@ export default class TableList extends Component {
         return (
             <div>
                 <Card>
-                    sdsddsf
                     <CardHeader><i className="fa fa-align-justify"></i>{this.props.title}</CardHeader>
                     <CardBody>
                         {this.props.total && <MyBadge className="mr-1" color="danger">Total count: {this.props.total}</MyBadge>}
-
-                        
                     </CardBody>
                 </Card>
                 <Table responsive striped>
